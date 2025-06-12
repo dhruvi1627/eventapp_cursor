@@ -240,42 +240,57 @@ public class EventRepository {
         return result;
     }
 
-    public LiveData<Event> joinEvent(String id) {
+    public LiveData<ApiResponse<Event>> joinEvent(String eventId) { // Changed return type
+        final MutableLiveData<ApiResponse<Event>> joinEventResponseLiveData = new MutableLiveData<>();
         String token = sessionManager.getToken();
+
         if (token == null) {
             String errorMsg = "Authentication required";
-            errorLiveData.setValue(errorMsg);
             Log.e(TAG, errorMsg);
-            return eventLiveData;
+            errorLiveData.postValue(errorMsg); // Notify via general error LiveData
+            // Post null or a specific error ApiResponse if the fragment is set up to handle it
+            // Based on instructions, posting null is acceptable as fragment checks for it.
+            joinEventResponseLiveData.postValue(null);
+            return joinEventResponseLiveData;
         }
 
-        eventApiService.joinEvent("Bearer " + token, id).enqueue(new Callback<ApiResponse<Event>>() {
+        eventApiService.joinEvent("Bearer " + token, eventId).enqueue(new Callback<ApiResponse<Event>>() {
             @Override
             public void onResponse(Call<ApiResponse<Event>> call, Response<ApiResponse<Event>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ApiResponse<Event> apiResponse = response.body();
+                    joinEventResponseLiveData.postValue(apiResponse); // Post the actual ApiResponse
+
                     if (apiResponse.isSuccess() && apiResponse.getData() != null) {
-                        eventLiveData.setValue(apiResponse.getData());
+                        // Successfully joined, update the specific event's details if needed elsewhere
+                        eventLiveData.postValue(apiResponse.getData());
                     } else {
-                        String errorMsg = apiResponse.getMessage() != null ? apiResponse.getMessage() : "Unknown error occurred";
-                        errorLiveData.setValue(errorMsg);
-                        Log.e(TAG, "Error joining event: " + errorMsg);
+                        // API returned success=false, but valid response (e.g. "already joined")
+                        String errorMsg = apiResponse.getMessage() != null ? apiResponse.getMessage() : "Failed to join event (API logic error)";
+                        // errorLiveData.postValue(errorMsg); // General error LiveData updated by Fragment if apiResponse.getMessage is used
+                        Log.e(TAG, "API error joining event: " + errorMsg);
                     }
                 } else {
+                    // HTTP error (e.g., 404, 500)
                     String errorMsg = getErrorMessage(response.errorBody());
-                    errorLiveData.setValue(errorMsg);
-                    Log.e(TAG, "Error joining event: " + errorMsg);
+                    Log.e(TAG, "HTTP error joining event: " + errorMsg);
+                    // Post null as ApiResponse to be handled by fragment's null check
+                    joinEventResponseLiveData.postValue(null);
+                    errorLiveData.postValue(errorMsg); // Update general error LiveData
                 }
             }
 
             @Override
             public void onFailure(Call<ApiResponse<Event>> call, Throwable t) {
-                String errorMsg = "Network error: " + t.getMessage();
-                errorLiveData.setValue(errorMsg);
+                // Network failure or other unexpected error
+                String errorMsg = "Network error joining event: " + t.getMessage();
                 Log.e(TAG, errorMsg, t);
+                // Post null as ApiResponse
+                joinEventResponseLiveData.postValue(null);
+                errorLiveData.postValue(errorMsg); // Update general error LiveData
             }
         });
-        return eventLiveData;
+        return joinEventResponseLiveData;
     }
 
     public LiveData<String> getError() {

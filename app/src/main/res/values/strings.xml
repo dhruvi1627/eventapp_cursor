@@ -65,4 +65,22 @@
     <string name="try_again">Try Again</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-</resources> 
+
+    <!-- Event Details -->
+    <string name="label_organizer">Organizer: %s</string>
+    <string name="label_organizer_not_available">Organizer: Not available</string>
+    <string name="label_category">Category: %s</string>
+    <string name="label_category_not_specified">Category: Not specified</string>
+    <string name="label_price">Price: </string>
+    <string name="label_tickets_available_capacity">Tickets: %1$d / %2$d</string>
+    <string name="label_participants_count">Participants: %d</string>
+    <string name="label_participants_zero">Participants: 0</string>
+    <string name="action_join_event">Join Event</string>
+    <string name="action_joining_event">Joining…</string>
+    <string name="action_joined_event">Joined</string>
+    <string name="message_event_load_failed_not_found">Failed to load event details. Event not found.</string>
+    <string name="message_event_load_error">Error: %s</string>
+    <string name="message_join_event_success">Successfully joined event!</string>
+    <string name="message_join_event_failed">Failed to join event.</string>
+    <string name="label_description">Description</string>
+</resources>
