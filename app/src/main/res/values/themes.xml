@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.EventApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/brown_accent</item>
+        <item name="colorPrimaryVariant">@color/surface_dark</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
+        
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/brown_accent</item>
+        <item name="colorSecondaryVariant">@color/surface_dark</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+        
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        <!-- Custom theme attributes -->
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="backgroundColor">@color/background_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        
+        <!-- Disable system splash screen -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="postSplashScreenTheme">@style/Theme.EventApp.NoActionBar</item>
+        
+        <!-- Material Design 3 properties -->
+        <item name="materialCardViewStyle">@style/Widget.EventApp.CardView</item>
+        <item name="bottomNavigationStyle">@style/Widget.EventApp.BottomNavigation</item>
+    </style>
+
+    <!-- NoActionBar theme variant -->
+    <style name="Theme.EventApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- Custom widget styles -->
+    <style name="Widget.EventApp.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/surface_dark</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">16dp</item>
+    </style>
+
+    <style name="Widget.EventApp.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">@color/surface_dark</item>
+        <item name="itemIconTint">@color/text_primary</item>
+        <item name="itemTextColor">@color/text_primary</item>
+    </style>
+
+    <!-- Text Appearance -->
+    <style name="TextAppearance.EventApp.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.EventApp.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Custom Splash Screen theme -->
+    <style name="Theme.EventApp.Splash" parent="Theme.EventApp">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
+    </style>
+</resources> 

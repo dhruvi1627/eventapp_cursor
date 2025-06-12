@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material Design Colors -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Theme Colors -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FF4081</color>
+    <color name="accent_dark">#F50057</color>
+
+    <!-- Light Theme Colors -->
+    <color name="light_background">#FFFFFF</color>
+    <color name="light_surface">#FFFFFF</color>
+    <color name="light_error">#B00020</color>
+    <color name="light_text_primary">#DE000000</color>
+    <color name="light_text_secondary">#99000000</color>
+    <color name="light_divider">#1F000000</color>
+    <color name="light_card_background">#FFFFFF</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="dark_background">#121212</color>
+    <color name="dark_surface">#1E1E1E</color>
+    <color name="dark_error">#CF6679</color>
+    <color name="dark_text_primary">#FFFFFF</color>
+    <color name="dark_text_secondary">#B3FFFFFF</color>
+    <color name="dark_divider">#1FFFFFFF</color>
+    <color name="dark_card_background">#2D2D2D</color>
+
+    <!-- Background and Surface Colors -->
+    <color name="surface_dark">@color/dark_surface</color>
+
+    <!-- Category Colors -->
+    <color name="category_art">#4CAF50</color>
+    <color name="category_business">#FFC107</color>
+    <color name="category_community">#E91E63</color>
+    <color name="category_entertainment">#673AB7</color>
+    <color name="category_fashion">#00BCD4</color>
+    <color name="category_music">#FF9800</color>
+    <color name="category_food">#2196F3</color>
+
+    <!-- System Colors -->
+    <color name="ic_launcher_background">#FF5722</color>
+
+    <!-- App Colors -->
+    <color name="background_dark">#121212</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="brown_accent">#D4AF37</color>
+    <color name="search_background">#1F1F1F</color>
+    <color name="divider">#1FFFFFFF</color>
+
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="background_light">#FFFFFF</color>
+    <color name="text_primary_dark">#DEFFFFFF</color>
+    <color name="text_secondary_dark">#99FFFFFF</color>
+    <color name="ripple_light">#1F000000</color>
+    <color name="ripple_dark">#1FFFFFFF</color>
+    <color name="error">#B00020</color>
+
+    <!-- Material Design 3 colors -->
+    <color name="md_theme_primary">#2196F3</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#BCE3FF</color>
+    <color name="md_theme_onPrimaryContainer">#001E2E</color>
+    <color name="md_theme_secondary">#535F70</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#D7E3F8</color>
+    <color name="md_theme_onSecondaryContainer">#101C2B</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+    <color name="md_theme_background">#FDFCFF</color>
+    <color name="md_theme_onBackground">#1A1C1E</color>
+    <color name="md_theme_surface">#FDFCFF</color>
+    <color name="md_theme_onSurface">#1A1C1E</color>
+    <color name="md_theme_surfaceVariant">#DFE2EB</color>
+    <color name="md_theme_onSurfaceVariant">#43474E</color>
+    <color name="md_theme_outline">#73777F</color>
+
+    <color name="dark_gray">#666666</color>
+    <color name="gray">#888888</color>
+    <color name="light_gray">#DDDDDD</color>
+</resources> 

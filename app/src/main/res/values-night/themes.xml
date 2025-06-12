@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark application theme -->
+    <style name="Theme.EventApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/black</item>
+        
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/black</item>
+        
+        <!-- Custom theme attributes -->
+        <item name="backgroundColor">@color/dark_background</item>
+        <item name="surfaceColor">@color/dark_surface</item>
+        <item name="errorColor">@color/dark_error</item>
+        <item name="textColorPrimary">@color/dark_text_primary</item>
+        <item name="textColorSecondary">@color/dark_text_secondary</item>
+        <item name="dividerColor">@color/dark_divider</item>
+        <item name="cardBackgroundColor">@color/dark_card_background</item>
+        
+        <!-- Default text colors -->
+        <item name="android:textColorPrimary">@color/dark_text_primary</item>
+        <item name="android:textColorSecondary">@color/dark_text_secondary</item>
+        
+        <!-- Material Design 3 properties -->
+        <item name="materialCardViewStyle">@style/Widget.EventApp.CardView</item>
+        <item name="bottomNavigationStyle">@style/Widget.EventApp.BottomNavigation</item>
+        <item name="textInputStyle">@style/Widget.EventApp.TextInputLayout</item>
+    </style>
+
+    <!-- Custom widget styles for dark theme -->
+    <style name="Widget.EventApp.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+
+    <style name="Widget.EventApp.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">?attr/surfaceColor</item>
+        <item name="itemIconTint">@color/primary_light</item>
+        <item name="itemTextColor">@color/primary_light</item>
+    </style>
+
+    <style name="Widget.EventApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/primary_light</item>
+        <item name="hintTextColor">@color/primary_light</item>
+    </style>
+</resources> 
