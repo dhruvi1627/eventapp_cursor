@@ -75,20 +75,26 @@ const createEvent = async (req, res) => {
 };
 
 const getAllEvents = async (req, res) => {
+  console.log('getAllEvents controller function called'); // New log statement
   try {
+    // Current filter: Only shows events with status 'upcoming'.
+    // Consider if other statuses or no status filter is needed for the home page.
     const events = await Event.find({ status: 'upcoming' })
       .populate('organizer', 'name email')
       .sort({ date: 1 });
+
+    // Log how many events are found with the current filter
+    console.log(`Found ${events.length} events with status 'upcoming'.`);
 
     res.json({
       success: true,
       data: events
     });
   } catch (error) {
-    console.error('Error fetching events:', error);
+    console.error('Error in getAllEvents controller:', error); // Made log more specific
     res.status(500).json({
       success: false,
-      message: 'Server error',
+      message: 'Server error while fetching all events', // Made message more specific
       error: error.message
     });
   }

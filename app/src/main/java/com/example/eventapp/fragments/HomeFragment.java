@@ -31,8 +31,9 @@ import com.example.eventapp.activities.CreateEventActivity;
 import com.example.eventapp.adapters.EventAdapter;
 import com.example.eventapp.adapters.FeaturedEventAdapter;
 import com.example.eventapp.models.Event;
-import com.example.eventapp.data.EventRepository;
+import com.example.eventapp.repository.EventRepository; // Corrected import
 import com.example.eventapp.utils.SessionManager;
+import android.util.Log; // For logging errors
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +89,7 @@ public class HomeFragment extends Fragment {
         setupSearch();
         loadFeaturedEvents();
         loadNearbyEvents();
+        observeApiErrors(); // Call to observe errors
 
         return view;
     }
@@ -150,11 +152,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadFeaturedEvents() {
-        // First fetch all events
-        eventRepository.fetchAllEvents();
+        // Fetch all events by calling getEvents(), which populates the LiveData observed below.
+        eventRepository.getEvents();
         
         // Observe the events LiveData
-        eventRepository.getEvents().observe(getViewLifecycleOwner(), events -> {
+        eventRepository.getEventsLiveData().observe(getViewLifecycleOwner(), events -> {
             if (events != null && !events.isEmpty()) {
                 featuredEventList.clear();
                 // Filter featured events (you might want to add a 'featured' field to your Event class)
@@ -171,12 +173,27 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadNearbyEvents() {
-        // The events are already being fetched in loadFeaturedEvents
-        eventRepository.getEvents().observe(getViewLifecycleOwner(), events -> {
+        // Observe the events LiveData, assuming getEvents() was called (e.g., by loadFeaturedEvents)
+        eventRepository.getEventsLiveData().observe(getViewLifecycleOwner(), events -> {
             if (events != null && !events.isEmpty()) {
                 nearbyEventAdapter.updateEvents(events);
+            } else {
+                // Handle case where events are null or empty after fetch
+                // nearbyEventAdapter.updateEvents(new ArrayList<>()); // Clear the list
             }
         });
+    }
+
+    private void observeApiErrors() {
+        if (eventRepository != null && eventRepository.getErrorLiveData() != null) {
+            eventRepository.getErrorLiveData().observe(getViewLifecycleOwner(), error -> {
+                if (error != null && !error.isEmpty()) {
+                    Toast.makeText(getContext(), "Error: " + error, Toast.LENGTH_LONG).show();
+                    Log.e("HomeFragment", "API Error: " + error);
+                    // eventRepository.clearErrorLiveData(); // Consider adding if error is sticky
+                }
+            });
+        }
     }
 
     private void setupNavigationDrawer() {
