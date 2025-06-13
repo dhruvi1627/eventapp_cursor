@@ -19,6 +19,7 @@ import com.example.eventapp.models.Event;
 import com.example.eventapp.repository.EventRepository;
 import com.bumptech.glide.Glide;
 
+import android.util.Log; // Added for logging
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Date;
@@ -177,13 +178,29 @@ public class EventDetailsFragment extends Fragment {
 
 
         if (event.getImageBase64() != null && !event.getImageBase64().isEmpty() && getContext() != null) {
-            // Convert base64 to bitmap
-            byte[] decodedString = android.util.Base64.decode(event.getImageBase64(), android.util.Base64.DEFAULT);
-            Glide.with(getContext())
-                .load(decodedString)
-                .placeholder(R.drawable.placeholder_image)
-                .error(R.drawable.error_image)
-                .into(eventImageView);
+            String base64Image = event.getImageBase64();
+            String pureBase64Image = base64Image;
+
+            // Check if the string contains the Base64 prefix
+            if (base64Image.contains(",")) {
+                // Split the string at the comma and take the second part (the actual Base64)
+                pureBase64Image = base64Image.substring(base64Image.indexOf(",") + 1);
+            }
+
+            try {
+                byte[] decodedString = android.util.Base64.decode(pureBase64Image, android.util.Base64.DEFAULT);
+                Glide.with(getContext())
+                    .load(decodedString)
+                    .placeholder(R.drawable.placeholder_image)
+                    .error(R.drawable.error_image) // This error drawable should show if decoding fails or bytes are not an image
+                    .into(eventImageView);
+            } catch (IllegalArgumentException e) {
+                // Log error or handle case where pureBase64Image is not valid Base64
+                Log.e("EventDetailsFragment", "Failed to decode Base64 string", e);
+                Glide.with(getContext())
+                    .load(R.drawable.error_image) // Show error drawable explicitly on decode failure
+                    .into(eventImageView);
+            }
         } else {
             // Load placeholder if no image
             Glide.with(getContext())
